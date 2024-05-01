@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+
+    <style>
+        ul {
+            min-width: 400px;
+            display: inline-flex;
+            flex-direction: column;
+            list-style-type: none;
+            padding: 20px;
+            border-bottom: 4px solid lightgray;
+        }
+
+        li {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Todo Lists</h1>
+
+    <div>
+        <label for="listName">
+            Nom de la liste :
+            <input type="text" id="list-name" value="My Todo" placeholder="My todo">
+        </label>
+        <button onclick="createList()">Créer</button>
+    </div>
+
+    <div id="lists-container"></div>
+
+    <script defer src="v8-inputs.js"></script>
+
+</body>
+
+</html>
