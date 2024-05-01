@@ -194,8 +194,10 @@ function createList() {
     container.append(todoList.getHTML());
 }
 
-console.log(localStorage);
-// localStorage.clear();
+function purgeLocalStorage() {
+    localStorage.clear();
+    location.reload();
+}
 
 if (localStorage.getItem("lists")) {
     let lists = JSON.parse(localStorage.getItem("lists") || "[]");
