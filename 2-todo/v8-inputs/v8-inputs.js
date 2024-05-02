@@ -1,6 +1,6 @@
 // Version 8 - Avec des inputs
 
-class item {
+class Item {
 
     constructor(name, done = false) {
         this.name = name;
@@ -13,7 +13,7 @@ class item {
 
 }
 
-class todo {
+class ToDo {
 
     constructor(name = 'My todo list', items = []) {
         this.name = name;
@@ -80,7 +80,7 @@ class todo {
     }
 }
 
-class todoDom {
+class ToDoDom {
 
     constructor(todo) {
         this.todo = todo;
@@ -91,10 +91,10 @@ class todoDom {
         this.todoButton.addEventListener('click', () => this.add(this.todoInput.value));
     }
 
-    add(item) {
-        this.todo.add(item);
+    add(itemName) {
+        this.todo.add(new Item(itemName));
         this.todoInput.value = '';
-        this.ul.appendChild(this.createLi(item));
+        this.ul.appendChild(this.createLi(itemName));
     }
 
     createLi(item) {
@@ -106,16 +106,11 @@ class todoDom {
     getHTML() {
         let container = document.createElement('div');
         container.innerHTML = '<h2>' + this.todo.name + '</h2>';
+
         let controls = document.createElement('div');
         controls.appendChild(this.todoInput);
         controls.appendChild(this.todoButton);
         container.appendChild(controls);
-
-        this.todo.items.forEach((item, index) => {
-            let li = document.createElement('li');
-            li.textContent = item.done ? '(X) ' + item.name : '( ) ' + item.name;
-            this.ul.appendChild(li);
-        });
 
         container.appendChild(this.ul);
 
@@ -125,7 +120,7 @@ class todoDom {
 
 function createList() {
     let listName = document.getElementById('list-name').value;
-    let todoList = new todoDom(new todo(listName));
+    let todoList = new ToDoDom(new ToDo(listName));
     let container = document.getElementById('lists-container');
     container.append(todoList.getHTML());
 }

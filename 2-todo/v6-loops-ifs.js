@@ -1,6 +1,6 @@
 // Version 6 - Boucles et conditions
 
-class item {
+class Item {
 
     constructor(name, done = false) {
         this.name = name;
@@ -11,10 +11,14 @@ class item {
         console.log('Item:', this.name, 'Done:', this.done);
     }
 
+    toggle() {
+        this.done = !this.done;
+    }
+
 }
 
 
-class todo {
+class ToDo {
 
     constructor(name = 'My todo list', items = []) {
         this.name = name;
@@ -71,7 +75,7 @@ class todo {
     }
 
     toggleCompleted(index) {
-        this.items[index].done = !this.items[index].done;
+        this.items[index].toggle();
         this.display();
     }
 
@@ -98,6 +102,6 @@ class todo {
     }
 }
 
-let myTodo = new todo('My todo', [new item('item1'), new item('item2'), new item('item3')]);
-myTodo.toggleAll();
+let myTodo = new ToDo('My todo', [new Item('item1'), new Item('item2'), new Item('item3')]);
+myTodo.display();
 myTodo.toggleAll();

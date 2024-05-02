@@ -1,6 +1,6 @@
 // Version 4 - Avec une classe d'objet
 
-class todo {
+class ToDo {
 
     constructor(name = 'My todo list', items = []) {
         this.name = name;
@@ -31,7 +31,7 @@ class todo {
     }
 }
 
-let todo1 = new todo;
+let todo1 = new ToDo;
 todo1.display();
 todo1.add('item1');
 todo1.add('item2');
@@ -42,6 +42,6 @@ todo1.change(0, 'item1 est changé');
 todo1.remove(1);
 
 
-let todo2 = new todo('My todo list 2', ['item4', 'item5', 'item6']);
+let todo2 = new ToDo('My todo list 2', ['item4', 'item5', 'item6']);
 todo2.display();
 

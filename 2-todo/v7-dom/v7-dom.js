@@ -1,6 +1,6 @@
 // Version 7 - Avec le DOM
 
-class item {
+class Item {
 
     constructor(name, done = false) {
         this.name = name;
@@ -11,9 +11,13 @@ class item {
         console.log('Item:', this.name, 'Done:', this.done);
     }
 
+    toggle() {
+        this.done = !this.done;
+    }
+
 }
 
-class todo {
+class ToDo {
 
     constructor(name = 'My todo list', items = []) {
         this.name = name;
@@ -53,7 +57,7 @@ class todo {
     }
 
     toggleCompleted(index) {
-        this.items[index].done = !this.items[index].done;
+        this.items[index].toggle();
         this.display();
     }
 
@@ -80,20 +84,10 @@ class todo {
     }
 }
 
-class todoDom {
+class ToDoDom {
 
     constructor(todo) {
         this.todo = todo;
-        // this.ul = document.createElement('ul');
-        // this.todoInput = document.createElement('input');
-        // this.todoButton = document.createElement('button');
-        // this.todoButton.addEventListener('click', () => this.add(this.todoInput.value));
-    }
-
-    add(item) {
-        this.todo.add(item);
-        this.todoInput.value = '';
-        this.display();
     }
 
     getHTML() {
@@ -115,7 +109,8 @@ class todoDom {
 }
 
 function createList() {
-    let todoList = new todoDom(new todo('My todo', [new item('item1'), new item('item2'), new item('item3')]));
-    let container = document.getElementById('lists-container');
-    container.append(todoList.getHTML());
+    let todo = new ToDo('My todo', [new Item('item1'), new Item('item2'), new Item('item3')]);
+    let todoList = new ToDoDom(todo);
+    let listContainer = document.getElementById('lists-container');
+    listContainer.append(todoList.getHTML());
 }

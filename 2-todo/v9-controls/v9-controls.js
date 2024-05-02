@@ -1,6 +1,6 @@
 // Version 9 - Avec des contrôles
 
-class item {
+class Item {
 
     constructor(name, done = false) {
         this.name = name;
@@ -13,7 +13,7 @@ class item {
 
 }
 
-class todo {
+class ToDo {
 
     constructor(name = 'My todo list', items = []) {
         this.name = name;
@@ -80,12 +80,12 @@ class todo {
     }
 }
 
-class todoDom {
+class ToDoDom {
 
     static count = 0;
 
     constructor(todo) {
-        this.id = todoDom.count++;
+        this.id = ToDoDom.count++;
 
         this.todo = todo;
 
@@ -99,7 +99,7 @@ class todoDom {
     }
 
     add(itemText) {
-        this.todo.add(new item(itemText));
+        this.todo.add(new Item(itemText));
         this.input.value = '';
         this.ul.appendChild(this.createLi(itemText));
     }
@@ -151,11 +151,6 @@ class todoDom {
         controls.appendChild(this.button);
         container.appendChild(controls);
 
-        // this.todo.items.forEach((item, index) => {
-        //     let li = document.createElement('li');
-        //     li.textContent = item.done ? '(X) ' + item.name : '( ) ' + item.name;
-        //     this.ul.appendChild(li);
-        // });
 
         container.appendChild(this.ul);
 
@@ -165,7 +160,7 @@ class todoDom {
 
 function createList() {
     let listName = document.getElementById('list-name').value;
-    let todoList = new todoDom(new todo(listName));
+    let todoList = new ToDoDom(new ToDo(listName));
     let container = document.getElementById('lists-container');
     container.append(todoList.getHTML());
 }

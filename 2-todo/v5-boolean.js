@@ -1,6 +1,6 @@
 // Version 5 - Avec des booléens
 
-class item {
+class Item {
 
     constructor(name, done = false) {
         this.name = name;
@@ -13,8 +13,7 @@ class item {
 
 }
 
-
-class todo {
+class ToDo {
 
     constructor(name = 'My todo list', items = []) {
         this.name = name;
@@ -50,6 +49,6 @@ class todo {
     }
 }
 
-let myTodo = new todo('My todo', [new item('item1'), new item('item2'), new item('item3')]);
+let myTodo = new ToDo('My todo', [new Item('item1'), new Item('item2'), new Item('item3')]);
 myTodo.display();
 myTodo.toggleCompleted(1);

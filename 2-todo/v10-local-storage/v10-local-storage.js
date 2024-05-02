@@ -1,6 +1,6 @@
 // Version 10 - Avec local storage
 
-class item {
+class Item {
 
     constructor(name, done = false) {
         this.name = name;
@@ -13,7 +13,7 @@ class item {
 
 }
 
-class todo {
+class ToDo {
 
     constructor(name = 'My todo list', items = []) {
         this.name = name;
@@ -84,14 +84,14 @@ class todo {
     }
 }
 
-class todoDom {
+class ToDoDom {
 
     static count = 0;
 
     static lists = [];
 
     constructor(todo) {
-        this.id = todoDom.count++;
+        this.id = ToDoDom.count++;
 
         this.todo = todo;
 
@@ -103,17 +103,17 @@ class todoDom {
         this.button.textContent = 'Ajouter une tâche';
         this.button.addEventListener('click', () => this.add(this.input.value));
 
-        todoDom.lists.push(this.todo);
+        ToDoDom.lists.push(this.todo);
 
         this.save();
     }
 
     save() {
-        localStorage.setItem("lists", JSON.stringify(todoDom.lists));
+        localStorage.setItem("lists", JSON.stringify(ToDoDom.lists));
     }
 
     add(itemText) {
-        let newItem = new item(itemText);
+        let newItem = new Item(itemText);
         this.todo.add(newItem);
         this.input.value = '';
         this.ul.appendChild(this.createLi(newItem));
@@ -189,7 +189,7 @@ class todoDom {
 
 function createList() {
     let listName = document.getElementById('list-name').value;
-    let todoList = new todoDom(new todo(listName));
+    let todoList = new ToDoDom(new ToDo(listName));
     let container = document.getElementById('lists-container');
     container.append(todoList.getHTML());
 }
@@ -202,8 +202,8 @@ function purgeLocalStorage() {
 if (localStorage.getItem("lists")) {
     let lists = JSON.parse(localStorage.getItem("lists") || "[]");
     lists.forEach((list) => {
-        let newTodo = Object.assign(new todo, list);
-        let todoList = new todoDom(newTodo);
+        let newTodo = Object.assign(new ToDo, list);
+        let todoList = new ToDoDom(newTodo);
         let container = document.getElementById('lists-container');
         container.append(todoList.getHTML());
     });
