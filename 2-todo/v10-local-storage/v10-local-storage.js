@@ -17,11 +17,8 @@ class ToDo {
 
     constructor(name = 'My todo list', items = []) {
         this.name = name;
-        this.items = items;
-    }
-
-    factory(obj) {
-        Object.assign(this, obj)
+        this.items = [];
+        items.forEach( item => this.items.push( new Item(item.name, item.done) ) );
     }
 
     display() {
@@ -121,7 +118,7 @@ class ToDoDom {
     }
 
     createLi(item, id = null) {
-        if(id === null) { id = this.todo.items.length - 1; }
+        if (id === null) { id = this.todo.items.length - 1; }
         let li = document.createElement('li');
         let itemId = id;
         li.dataset.ulId = this.id;
@@ -189,7 +186,8 @@ class ToDoDom {
 
 function createList() {
     let listName = document.getElementById('list-name').value;
-    let todoList = new ToDoDom(new ToDo(listName));
+    let todo = new ToDo(listName);
+    let todoList = new ToDoDom(todo);
     let container = document.getElementById('lists-container');
     container.append(todoList.getHTML());
 }
@@ -202,7 +200,7 @@ function purgeLocalStorage() {
 if (localStorage.getItem("lists")) {
     let lists = JSON.parse(localStorage.getItem("lists") || "[]");
     lists.forEach((list) => {
-        let newTodo = Object.assign(new ToDo, list);
+        let newTodo = new ToDo(list.name, list.items);
         let todoList = new ToDoDom(newTodo);
         let container = document.getElementById('lists-container');
         container.append(todoList.getHTML());
